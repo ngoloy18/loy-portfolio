@@ -1,129 +1,501 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Loy Ngo Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loy Ngo | Portfolio</title>
+  <style>
+    :root{
+      --bg: #0b1020;
+      --bg-2: #121933;
+      --card: rgba(255,255,255,0.08);
+      --text: #f5f7ff;
+      --muted: #b7bfdc;
+      --accent: #7c9cff;
+      --accent-2: #8ef0d1;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
 
-<style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
 
-body{
-font-family: Arial;
-margin:0;
-background:#f5f5f5;
-}
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,156,255,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(142,240,209,0.12), transparent 25%),
+        linear-gradient(180deg, var(--bg), #0f1630 55%, #0a1124);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-nav{
-background:#111;
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-}
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
 
-nav a{
-color:white;
-margin-left:20px;
-text-decoration:none;
-}
+    .container{
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
 
-section{
-padding:60px;
-max-width:900px;
-margin:auto;
-}
+    nav{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(11,16,32,0.75);
+      border-bottom: 1px solid var(--border);
+    }
 
-.card{
-background:white;
-padding:20px;
-margin:20px 0;
-border-radius:8px;
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
-}
+    .nav-inner{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
 
-footer{
-background:#111;
-color:white;
-text-align:center;
-padding:20px;
-}
+    .logo{
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
 
-</style>
+    .logo span{
+      color: var(--accent);
+    }
 
+    .nav-links{
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a{
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover{
+      color: var(--text);
+    }
+
+    .hero{
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 0 40px;
+    }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge{
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: var(--accent-2);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1{
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+      line-height: 1.08;
+      margin-bottom: 16px;
+    }
+
+    .hero p{
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 1.05rem;
+      margin-bottom: 26px;
+    }
+
+    .hero-buttons{
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.25s;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), #5f7cff);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover{
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary{
+      border-color: var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover{
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat{
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat:last-child{
+      border-bottom: none;
+    }
+
+    .stat h3{
+      font-size: 1.6rem;
+      color: var(--accent-2);
+      margin-bottom: 4px;
+    }
+
+    .stat p{
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    section{
+      padding: 90px 0;
+    }
+
+    .section-title{
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle{
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 34px;
+    }
+
+    .about-box{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3{
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .card p{
+      color: var(--muted);
+    }
+
+    .skills{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .skill{
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .projects-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+    }
+
+    .project-card:hover{
+      transform: translateY(-6px);
+    }
+
+    .project-card h3{
+      margin-bottom: 10px;
+    }
+
+    .project-card p{
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .tag-wrap{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag{
+      font-size: 0.85rem;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(124,156,255,0.12);
+      color: #dfe6ff;
+      border: 1px solid rgba(124,156,255,0.2);
+    }
+
+    .contact-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .contact-item{
+      margin-bottom: 14px;
+      color: var(--muted);
+    }
+
+    .contact-item strong{
+      color: var(--text);
+    }
+
+    footer{
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 20px;
+    }
+
+    @media (max-width: 900px){
+      .hero-grid,
+      .about-box,
+      .contact-grid,
+      .projects-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .hero{
+        min-height: auto;
+        padding-top: 50px;
+      }
+
+      .nav-inner{
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links{
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav>
-<h2>Loy Ngo</h2>
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">Loy <span>Ngo</span></div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<div>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
-</div>
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">Computer Science Student • Kent State University</div>
+        <h1>Hi, I’m Loy Ngo.</h1>
+        <p>
+          I’m a Computer Science student interested in software development, problem solving,
+          and building useful digital experiences. I enjoy team projects, learning new tools,
+          and turning ideas into real applications.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
 
-</nav>
+      <div class="hero-card">
+        <div class="stat">
+          <h3>Software</h3>
+          <p>Interested in building clean, useful, and user-friendly projects.</p>
+        </div>
+        <div class="stat">
+          <h3>Teamwork</h3>
+          <p>Experience working on collaborative class projects and sprint tasks.</p>
+        </div>
+        <div class="stat">
+          <h3>Growth</h3>
+          <p>Always improving in programming, design, and problem-solving skills.</p>
+        </div>
+      </div>
+    </div>
+  </header>
 
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">
+        Here’s a little about my background, interests, and what I enjoy working on.
+      </p>
 
-<section id="home">
+      <div class="about-box">
+        <div class="card">
+          <h3>Who I Am</h3>
+          <p>
+            Hello! I’m Loy Ngo, a Computer Science student at Kent State University.
+            I enjoy programming, learning new technologies, and building projects that help me grow
+            as a developer. Outside of academics, I also enjoy sports and staying active.
+          </p>
+        </div>
 
-<h1>Welcome</h1>
-<p>Computer Science student at Kent State University.</p>
+        <div class="card">
+          <h3>Skills & Interests</h3>
+          <p>
+            I’ve worked on coursework and projects involving programming, software engineering,
+            database design, and web development. I like clean design, organized structure,
+            and projects that feel practical and polished.
+          </p>
+          <div class="skills">
+            <span class="skill">HTML</span>
+            <span class="skill">CSS</span>
+            <span class="skill">Python</span>
+            <span class="skill">SQL</span>
+            <span class="skill">C++</span>
+            <span class="skill">GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</section>
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        A few projects and class-based works that reflect my learning and experience.
+      </p>
 
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Station Fall Game</h3>
+          <p>
+            A collaborative game project created for Software Engineering class, focused on gameplay,
+            teamwork, and feature development.
+          </p>
+          <div class="tag-wrap">
+            <span class="tag">Python</span>
+            <span class="tag">Pygame</span>
+            <span class="tag">Team Project</span>
+          </div>
+        </div>
 
-<section id="about">
+        <div class="project-card">
+          <h3>Database Design</h3>
+          <p>
+            Course work involving ER diagrams, database structure, and SQL queries to solve data problems
+            and design relational systems.
+          </p>
+          <div class="tag-wrap">
+            <span class="tag">SQL</span>
+            <span class="tag">ER Design</span>
+            <span class="tag">Databases</span>
+          </div>
+        </div>
 
-<h1>About Me</h1>
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p>
+            A personal portfolio website hosted with GitHub Pages to present my background,
+            projects, and contact information.
+          </p>
+          <div class="tag-wrap">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">GitHub Pages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<p>
-I am a Computer Science student who enjoys programming,
-building projects, and learning new technologies.
-I also enjoy playing sports and staying active.
-</p>
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">
+        Feel free to reach out for collaboration, networking, or opportunities.
+      </p>
 
-</section>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Get in Touch</h3>
+          <p class="contact-item"><strong>Email:</strong> your-email@example.com</p>
+          <p class="contact-item"><strong>GitHub:</strong> github.com/ngoloy18</p>
+          <p class="contact-item"><strong>School:</strong> Kent State University</p>
+        </div>
 
+        <div class="card">
+          <h3>Quick Note</h3>
+          <p>
+            Thanks for visiting my portfolio. I’m continuing to improve this site as I build more
+            projects, gain experience, and grow my skills in software development and design.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="projects">
-
-<h1>Projects</h1>
-
-<div class="card">
-<h3>Software Engineering Game</h3>
-<p>A collaborative game created in my Software Engineering class.</p>
-</div>
-
-<div class="card">
-<h3>Database Design</h3>
-<p>SQL queries and ER diagram assignments.</p>
-</div>
-
-<div class="card">
-<h3>Portfolio Website</h3>
-<p>This website hosted using GitHub Pages.</p>
-</div>
-
-</section>
-
-
-<section id="contact">
-
-<h1>Contact</h1>
-
-<p>Email: loyngo@example.com</p>
-<p>GitHub: github.com/ngoloy18</p>
-
-</section>
-
-
-<footer>
-
-<p>© 2026 Loy Ngo</p>
-
-</footer>
+  <footer>
+    <div class="container">
+      <p>© 2026 Loy Ngo. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
